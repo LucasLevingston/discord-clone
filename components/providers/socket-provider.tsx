@@ -1,8 +1,6 @@
 "use client";
 
-import { disconnect } from "process";
 import { createContext, useContext, useEffect, useState } from "react";
-
 import { io as ClientIO } from "socket.io-client";
 
 type SocketContextType = {
@@ -46,4 +44,10 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
       socketInstance.disconnect();
     };
   }, []);
+
+  return (
+    <SocketContext.Provider value={{ socket, isConnected }}>
+      {children}
+    </SocketContext.Provider>
+  );
 };
